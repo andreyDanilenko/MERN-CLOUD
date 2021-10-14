@@ -4,7 +4,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 // для описания конфигураций 
 const config = require('config');
-// подключаем библиотеку к переменной
+
 const app = express();
 const PORT = config.get('serverPort')
 

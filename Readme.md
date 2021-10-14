@@ -1,1 +1,1 @@
-# Облачное хранилище React.js + Node.js
+# Облачное хранилище MongoDB + Express.js + React.js + Node.js
