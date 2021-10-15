@@ -1,4 +1,5 @@
 {
     "serverPort": 5000,
-    "dbUrl": "mongodb+srv://Andrei:132465@cluster1.qq2p7.mongodb.net/cloud-disck?retryWrites=true&w=majority"
+    "dbUrl": "mongodb+srv://Andrei:132465@cluster1.qq2p7.mongodb.net/cloud-disck?retryWrites=true&w=majority",
+    "secretKey": "mern-secket-key"
 }
