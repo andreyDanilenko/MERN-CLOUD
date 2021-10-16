@@ -12,6 +12,7 @@ const jwt = require('jsonwebtoken')
 // Плагин для валидирования пароля на стороне сервера
 const { check, validationResult } = require("express-validator")
 const router = new Router();
+const authMiddleware = require('../middleware/auth.middleware')
 
 // Указываем URL на который отправим данные из окна регистрации 
 // Данная функция обработает email и password и на основе нашей схемы сформирует обьект данных
@@ -74,13 +75,30 @@ router.post('/login', async (req, res) => {
                 avatar: user.avatar
             }
         })
-
-
     } catch (e) {
-        console.log(e)
         res.send({ message: "Server error" })
     }
 })
 
+
+router.get('/auth', authMiddleware, async (req, res) => {
+    try {
+        const user = await User.findOne({ _id: req.user.id })
+        const token = jwt.sign({ id: user.id }, config.get("secretKey"), { expiresIn: "1h" })
+        return res.json({
+            token,
+            user: {
+                id: user.id,
+                email: user.email,
+                diskSpace: user.diskSpace,
+                usedSpace: user.usedSpace,
+                avatar: user.avatar
+            }
+        })
+
+    } catch (e) {
+        res.send({ message: "Server error" })
+    }
+})
 
 module.exports = router
