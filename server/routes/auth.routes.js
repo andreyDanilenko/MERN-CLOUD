@@ -13,6 +13,8 @@ const jwt = require('jsonwebtoken')
 const { check, validationResult } = require("express-validator")
 const router = new Router();
 const authMiddleware = require('../middleware/auth.middleware')
+const fileService = require('../services/fileService')
+const File = require('../models/File')
 
 // Указываем URL на который отправим данные из окна регистрации 
 // Данная функция обработает email и password и на основе нашей схемы сформирует обьект данных
@@ -41,6 +43,7 @@ router.post('/registration',
             const user = new User({ email, password: hashPassword })
             // добавляем пользователя в базу данных
             await user.save()
+            await fileService.createDir(new File({ user: user.id, name: '' }))
             return res.json({ message: "User was created" })
 
         } catch (e) {
