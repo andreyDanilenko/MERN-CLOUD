@@ -8,6 +8,17 @@
   &__create {
     margin-left: 10px;
   }
+
+  &__upload-input {
+    display: none;
+  }
+
+  &__upload-label {
+    border: 2px dashed #566885;
+    padding: 4px 10px 6px;
+    cursor: pointer;
+    margin-left: 10px;
+  }
 }
 
 .popup {
