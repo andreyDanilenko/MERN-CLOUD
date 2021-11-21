@@ -4,18 +4,17 @@ const config = require('config')
 
 class FileServices {
     createDir(file) {
-        console.log(file);
-        const filePath = `${config.get('filePath')}\\${file.user}\\${file.path}`
+        const filePath = `${config.get('filePath')}\\${file.user}\\${file.path}`;
         return new Promise((resolve, reject) => {
             try {
                 if (!fs.existsSync(filePath)) {
-                    fs.mkdirSync(filePath, { recursive: true });
-                    return resolve({ message: 'File was created' })
+                    fs.mkdirSync(filePath);
+                    return resolve({ message: 'File was created' });
                 } else {
-                    return reject({ message: 'File already exists' })
+                    return reject({ message: 'File already exists' });
                 }
             } catch (e) {
-                return reject({ message: 'File error' })
+                return reject({ message: 'File error' });
             }
         })
 
