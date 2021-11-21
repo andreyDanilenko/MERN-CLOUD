@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { createDir } from '../../actions/file';
-import { addFile, setPopupDisplay } from '../../reducers/fileReducer';
+import { setPopupDisplay } from '../../reducers/fileReducer';
 
 import './disk.scss'
 

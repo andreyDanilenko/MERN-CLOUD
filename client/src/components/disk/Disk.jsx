@@ -16,12 +16,16 @@ function Disk() {
 
     function showPopupHundler() {
         dispatch(setPopupDisplay('flex'))
-    }
+    };
+
+    function backClickHundler() {
+
+    };
 
     return (
         <div className="disk">
             <div className="disk__btns">
-                <button className='disk__back'>Назад</button>
+                <button className='disk__back' onClick={() => backClickHundler()}>Назад</button>
                 <button className='disk__create' onClick={() => showPopupHundler()}>Создать папку</button>
             </div>
             <FileList />
