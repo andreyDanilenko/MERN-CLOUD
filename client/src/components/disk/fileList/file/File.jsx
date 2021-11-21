@@ -1,16 +1,17 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import './file.scss';
 import dirLogo from '../../../../assets/img/folder.svg';
 import fileLogo from '../../../../assets/img/file.svg';
-import { setCurrentDir } from '../../../../reducers/fileReducer';
+import { pushToStack, setCurrentDir } from '../../../../reducers/fileReducer';
 
 function File({ file }) {
     const dispatch = useDispatch()
-    // const currentDir = useSelector(state => state.files.currentDir)
+    const currentDir = useSelector(state => state.files.currentDir)
 
     function openDirHundler() {
-        dispatch(setCurrentDir(file._id))
+        dispatch(pushToStack(currentDir));
+        dispatch(setCurrentDir(file._id));
     }
 
     return (

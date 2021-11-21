@@ -4,12 +4,13 @@ import { getFiles } from '../../actions/file'
 import FileList from './fileList/FileList';
 import './disk.scss'
 import Popup from './Popup';
-import { setPopupDisplay } from '../../reducers/fileReducer';
+import { popFromStack, pushToStack, setPopupDisplay, setCurrentDir } from '../../reducers/fileReducer';
 
 function Disk() {
     const dispatch = useDispatch();
     const currentDir = useSelector(state => state.files.currentDir);
-
+    const dirStack = useSelector(state => state.files.dirStack);
+    
     useEffect(() => {
         dispatch(getFiles(currentDir))
     }, [currentDir]);
@@ -19,7 +20,8 @@ function Disk() {
     };
 
     function backClickHundler() {
-
+        const backDirId = dirStack.pop();
+        dispatch(setCurrentDir(backDirId))
     };
 
     return (
