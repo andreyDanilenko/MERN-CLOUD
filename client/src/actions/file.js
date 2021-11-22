@@ -1,5 +1,5 @@
 import axios from "axios";
-import { addFile, setFiles } from '../reducers/fileReducer'
+import { addFile, setFiles, deleteFileAction } from '../reducers/fileReducer'
 
 export function getFiles(dirId) {
     return async dispatch => {
@@ -26,7 +26,7 @@ export function createDir(dirId, name) {
             });
             dispatch(addFile(response.data));
         } catch (e) {
-            alert(e.response.data.message);
+            alert(e?.response?.data?.message);
         }
     }
 }
@@ -60,7 +60,7 @@ export function uploadFile(file, dirId) {
 };
 
 export async function downloadFile(file) {
-    const response = await fetch(`http://localhost:5000/api/files/download?id=${file._id}`, {
+    const response = await axios.delete(`http://localhost:5000/api/files?id=${file._id}`, {
         headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`
         }
@@ -75,5 +75,24 @@ export async function downloadFile(file) {
         document.body.appendChild(link);
         link.click();
         link.remove();
+    }
+};
+
+
+export function deleteFile(file) {
+    console.log(file);
+    return async dispatch => {
+        try {
+            const response = await axios.delete(`http://localhost:5000/api/files?id=${file._id}`, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`
+                }
+            })
+            dispatch(deleteFileAction(file._id));
+            alert(response.data.message);
+
+        } catch (e) {
+            alert(e.response.data.message);
+        }
     }
 };
