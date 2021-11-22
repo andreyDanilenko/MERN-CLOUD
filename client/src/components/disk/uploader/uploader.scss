@@ -1,0 +1,93 @@
+$background-color: #e9e6e6;
+$font-color: #566885;
+
+.uploader {
+    height: 300px;
+    width: 300px;
+    position: fixed;
+    background-color: $font-color;
+    bottom: 0;
+    right: 0;
+    padding: 20px;
+    border-radius: 12px;
+    overflow-y: auto;
+
+    &__header {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__title {
+        color: $background-color;
+        font-size: 1.2rem;
+    }
+
+    &__close {
+        cursor: pointer;
+        position: relative;
+        width: 20px;
+        height: 20px;
+        background-color: transparent;
+        border: none;
+
+        &::before,
+        &::after {
+            position: absolute;
+            content: "";
+            width: 15px;
+            height: 2px;
+            background-color: $background-color;
+        }
+
+        &::before {
+            transform: rotate(-45deg);
+            top: 9px;
+            right: 2px;
+        }
+
+        &::after {
+            top: 9px;
+            right: 2px;
+            transform: rotate(45deg);
+        }
+    }
+}
+
+.upload-file {
+    background-color: $background-color;
+    border-radius: 8px;
+    margin: 5px 0;
+    padding: 5px 10px;
+
+    &__header {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__progress-bar {
+        height: 1rem;
+        border-radius: 8px;
+        background-color: $font-color;
+        display: flex;
+        margin: 3px 0;
+    }
+
+    &__remove {
+        cursor: pointer;
+        border: none;
+        background-color: transparent;
+    }
+
+    &__upload-bar {
+        background-color: green;
+        border-radius: 8px;
+    }
+
+    &__percent {
+        color: $background-color;
+        left: 50%;
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%, 0);
+    }
+}
