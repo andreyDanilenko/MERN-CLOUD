@@ -88,7 +88,7 @@ class FileController {
         try {
             // Получаем файл избазы данных
             const file = await File.findOne({ _id: req.query.id, user: req.user.id });
-            const path = config.get('filePath') + '\\' + req.use.id + '\\' + file.path + '\\' + file.name;
+            const path = config.get('filePath') + '\\' + req.user.id + '\\' + file.path + '\\' + file.name;
             if (fs.existsSync(path)) {
                 return res.download(path, file.name);
             }

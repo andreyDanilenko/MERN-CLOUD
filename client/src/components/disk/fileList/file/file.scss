@@ -6,6 +6,37 @@
     grid-template-columns: 1fr 4fr repeat(4, 1fr);
     align-items: center;
 
+    &__btn {
+        display: block;
+        cursor: pointer;
+        background-color: transparent;
+        border: none;
+        width: 58px;
+        height: 34px;
+        border: 1px solid #566885;
+        border-radius: 20px;
+    }
+
+    &__download {
+        display: none;
+    }
+
+    &:hover &__download {
+        display: block;
+        grid-column-start: 5;
+        justify-self: center;
+    }
+
+    &__delete {
+        display: none;
+    }
+
+    &:hover &__delete {
+        display: block;
+        grid-column-start: 6;
+        justify-self: center;
+    }
+
     &:hover {
         transition: 0.5s;
         transform: scale(1.01);
@@ -24,8 +55,19 @@
         grid-column-start: 5;
         justify-self: center;
     }
+
+    &:hover &__date {
+        grid-column-start: 3;
+        justify-self: center;
+    }
+
     &__size {
         grid-column-start: 6;
+        justify-self: center;
+    }
+
+    &:hover &__size {
+        grid-column-start: 4;
         justify-self: center;
     }
 }
