@@ -5,6 +5,7 @@ import dirLogo from '../../../../assets/img/folder.svg';
 import fileLogo from '../../../../assets/img/file.svg';
 import { pushToStack, setCurrentDir } from '../../../../reducers/fileReducer';
 import { deleteFile, downloadFile } from '../../../../actions/file';
+import { sizeFormat } from '../../../../utils/utils';
 
 function File({ file }) {
     const dispatch = useDispatch()
@@ -33,7 +34,7 @@ function File({ file }) {
             <img src={file.type === 'dir' ? dirLogo : fileLogo} alt="" className="file__img" />
             <div className="file__name">{file.name}</div>
             <div className="file__date">{file.date.slice(0, 10)}</div>
-            <div className="file__size">{file.size}</div>
+            <div className="file__size">{sizeFormat(file.size)}</div>
             {file.type !== 'dir' && <button onClick={(evt) => downloadClickHundler(evt)} className="file__btn file__download">
                 <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M17.0625 19.3129H15.0363V12.6875C15.0363 12.5672 14.9378 12.4688 14.8175 12.4688H13.1769C13.0566 12.4688 12.9582 12.5672 12.9582 12.6875V19.3129H10.9375C10.7543 19.3129 10.6531 19.5234 10.7652 19.6656L13.8277 23.5402C13.8482 23.5664 13.8743 23.5875 13.9041 23.6021C13.934 23.6166 13.9668 23.6242 14 23.6242C14.0332 23.6242 14.0659 23.6166 14.0958 23.6021C14.1256 23.5875 14.1518 23.5664 14.1722 23.5402L17.2347 19.6656C17.3468 19.5234 17.2457 19.3129 17.0625 19.3129Z" fill="#566885" />

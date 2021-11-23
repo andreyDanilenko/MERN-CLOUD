@@ -91,17 +91,16 @@ class FileController {
 
     async downloadFile(req, res) {
         try {
-            // Получаем файл избазы данных
-            const file = await File.findOne({ _id: req.query.id, user: req.user.id });
-            const path = config.get('filePath') + '\\' + req.user.id + '\\' + file.path + '\\' + file.name;
+            const file = await File.findOne({ _id: req.query.id, user: req.user.id })
+            const path = config.get('filePath') + '\\' + req.user.id + '\\' + file.path + '\\' + file.name
+            console.log('file', file, 'path', path);
             if (fs.existsSync(path)) {
-                return res.download(path, file.name);
+                return res.download(path, file.name)
             }
-
-            return res.status(400).json({ message: 'Download error' });
+            return res.status(400).json({ message: "Download error" })
         } catch (e) {
             console.log(e)
-            return res.status(500).json({ message: "Download error" });
+            res.status(500).json({ message: "Download error" })
         }
     }
 
@@ -112,7 +111,7 @@ class FileController {
             if (!file) {
                 return res.status(400).json({ message: 'File no found' });
             }
-            
+
             fileService.deleteFile(file);
             await file.remove();
             return res.json({ message: 'File was deleted' });
